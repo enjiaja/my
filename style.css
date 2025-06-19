@@ -71,8 +71,8 @@ nav a.active{
         top: 0;
         right: 0;
         width: 40%;
-        border-left: 3px solid #b74b4b;
-        border-bottom: 3px solid #b74b4b;
+        border-left: 3px solid purple;
+        border-bottom: 3px solid purple;
         border-bottom-left-radius: 2rem;
         padding: 1rem solid;
         background-color: #161616;
@@ -176,19 +176,19 @@ span{
     background-color: black;
     border-radius: 4rem;
     font-size: 1.6rem;
-    color: #b74b4b;
+    color: purple;
     letter-spacing: 0.3rem;
     font-weight: 600;
-    border: 2px solid #b74b4b;
+    border: 2px solid purple;
     transition: 0.3s ease;
     cursor: pointer;
 }
 
 .btn:hover{
     transform: scale3d(1.03);
-    background-color: #b74b4b;
+    background-color: purple;
     color: black;
-    box-shadow: 0 0 25px #b74b4b;
+    box-shadow: 0 0 25px purple;
 }
 
 .typing-text{
@@ -203,7 +203,7 @@ span{
 
 .typing-text span::before{
     content: "software Developer";
-    color: #b74b4b;
+    color: puple;
     animation: words 20s infinite;
 }
 
@@ -220,7 +220,7 @@ span{
 
 @keyframes cursor{
     to{
-        border-left: 3px solid #b74b4b;
+        border-left: 3px solid purple;
     }
 }
 
@@ -233,9 +233,6 @@ span{
     }
     41%, 60%{
         content: "Web Designer";
-    }
-    61%, 80%{
-        content: "Youtuber";
     }
     81%, 100%{
         content: "Script Writer";
