@@ -127,7 +127,7 @@ section{
 
 .home{
     background: url('bg.gif') no-repeat center center fixed;
-     background-size: cover;
+     background-size: 100% 100%;
     color: white;
     display: flex;
     justify-content: center;
