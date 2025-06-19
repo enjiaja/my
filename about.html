@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Enji</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 9%;
+      background-color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      font-size: 3rem;
+      color: #b74b4b;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav a {
+      margin-left: 3rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1.6rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #b74b4b;
+    }
+
+    section.about {
+      padding: 10rem 9% 5rem;
+    }
+
+    .about h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .about h1 span {
+      color: #b74b4b;
+    }
+
+    .about p {
+      font-size: 1.8rem;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .btn {
+      margin-top: 3rem;
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 2px solid #b74b4b;
+      color: #b74b4b;
+      border-radius: 30px;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #b74b4b;
+      color: black;
+      box-shadow: 0 0 15px #b74b4b;
+    }
+
+    .center-btn {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">enji</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+  </header>
+
+  <section class="about">
+    <h1>About <span>Me</span></h1>
+    <p>
+  Hey, my name’s Enji. I’m 18, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia.<br>
+
+To be honest, I didn’t get into tech because of school.<br> It actually started from something small — I was messing around with a WhatsApp bot. I didn’t really understand much, but the way it worked fascinated me. <br>It could reply, respond, do all these automated things… and I wanted to know how.
+
+I tried figuring things out on my own, <br>but it got confusing fast. So I decided to take a step back and start with something more beginner-friendly: HTML and CSS. Since then, I’ve been slowly learning how websites are made. Nothing fancy — just simple pages, small layouts, trying different stuff.
+
+Being a santri means my schedule's tight, but I still find bits of time to explore coding. Even if it’s just 20 minutes a day, it helps me move forward. I’m not an expert or anything — far from it — but I’m okay with being in the middle of the process.
+
+Eventually, I’d love to build something useful. Maybe go back to making bots again, but this time knowing what I’m actually doing. Until then, I’ll keep learning. Slowly, steadily
+    </p>
+
+    <div class="center-btn">
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+  </section>
+</body>
+</html>
