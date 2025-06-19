@@ -185,6 +185,15 @@ Eventually, I’d love to build something useful. Maybe go back to making bots a
         dropdownMenu.style.display = 'none';
       }
     });
+
+    window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("svgLoader").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("svgLoader").style.display = "none";
+      }, 500);
+    }, 3200); // Pastikan lebih lama dari durasi animasi
+  });
   </script>
 </body>
 </html>
