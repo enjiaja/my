@@ -8,6 +8,8 @@
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
+      background: url('bg.gif') no-repeat center center fixed;
+    background-size: cover;
 }
 
 html{
@@ -126,11 +128,6 @@ section{
 }
 
 .home{
-    background: url('bg.gif') no-repeat center center fixed;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
     color: white;
     display: flex;
     justify-content: center;
