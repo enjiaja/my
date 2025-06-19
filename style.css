@@ -15,8 +15,6 @@ html{
 }
 
 body{
-    background: url('bg.gif') no-repeat center center fixed;
-  background-size: cover;
   color: white; /* agar teks tetap terlihat */
   margin: 0;
   padding: 0;
@@ -130,6 +128,7 @@ section{
 }
 
 .home{
+    background: url('bg.gif') no-repeat center center fixed;
     display: flex;
     justify-content: center;
     align-items: center;
