@@ -1,112 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About | Enji</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Enji</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
-      background-color: #0d0d0d;
-      color: white;
+      background: linear-gradient(to right, #1a1a2e, #2e1a47);
+      color: #fff;
+      min-height: 100vh;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1rem 9%;
-      background-color: black;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      padding: 1.5rem 10%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 3rem;
-      color: purple;
+      font-size: 2rem;
       font-weight: bold;
-      text-decoration: none;
+      color: #a259ff;
     }
 
-    nav a {
-      margin-left: 3rem;
+    .profile-container {
+      position: relative;
+    }
+
+    .profile-logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid #a259ff;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 55px;
+      right: 0;
+      background: #2e1a47;
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
       color: white;
       text-decoration: none;
-      font-size: 1.6rem;
-      transition: 0.3s;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
     }
 
-    nav a:hover,
-    nav a.active {
-      color: purple;
+    .dropdown a:hover {
+      background: #a259ff;
     }
 
-    section.about {
-      padding: 10rem 9% 5rem;
-    }
-
-    .about h1 {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .about h1 span {
-      color: purple;
-    }
-
-    .about p {
-      font-size: 1.8rem;
-      line-height: 1.7;
+    .content {
       max-width: 800px;
-      margin: 0 auto;
-      color: #ccc;
-      text-align: center;
+      margin: 5rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      backdrop-filter: blur(5px);
+      animation: fadeInUp 1s ease forwards;
     }
 
-    .btn {
-      margin-top: 3rem;
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      border: 2px solid purple;
-      color: purple;
-      border-radius: 30px;
-      font-size: 1.5rem;
-      text-decoration: none;
-      transition: 0.3s ease;
+    .content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #a259ff;
     }
 
-    .btn:hover {
-      background-color: purple;
-      color: black;
-      box-shadow: 0 0 15px purple;
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      opacity: 0.95;
     }
 
-    .center-btn {
-      display: flex;
-      justify-content: center;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        margin: 2rem 1rem;
+      }
+
+      .content h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <a href="index.html" class="logo">enji</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-    </nav>
+    <div class="logo">About Enji</div>
+    <div class="profile-container">
+      <img src="profile.jpg" alt="Profile" class="profile-logo" id="profileBtn" />
+      <div class="dropdown" id="dropdownMenu">
+        <a href="#">My Profile</a>
+        <a href="#">Projects</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
   </header>
 
-  <section class="about">
-    <h1>About <span>Me</span></h1>
-    <p>
+  <main class="content">
+    <h1>Hello, I'm Enji</h1>
+  <p>
   Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia.<br>
 
 To be honest, I didn’t get into tech because of school.<br> It actually started from something small — I was messing around with a WhatsApp bot. I didn’t really understand much, but the way it worked fascinated me. <br>It could reply, respond, do all these automated things… and I wanted to know how.
@@ -117,10 +148,24 @@ Being a santri means my schedule's tight, but I still find bits of time to explo
 
 Eventually, I’d love to build something useful. Maybe go back to making bots again, but this time knowing what I’m actually doing. Until then, I’ll keep learning. Slowly, steadily
     </p>
+  </main>
 
-    <div class="center-btn">
-      <a href="index.html" class="btn">← Back to Home</a>
-    </div>
-  </section>
+  <script>
+    const profileBtn = document.getElementById('profileBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    profileBtn.addEventListener('click', () => {
+      dropdownMenu.style.display =
+        dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Klik di luar dropdown untuk nutup
+    document.addEventListener('click', (e) => {
+      if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
+
