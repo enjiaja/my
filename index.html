@@ -37,5 +37,15 @@
             <a href="about.html" class="btn">About me</a>
         </div>
     </section>
+    <script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("svgLoader").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("svgLoader").style.display = "none";
+      }, 500);
+    }, 3200); // Pastikan lebih lama dari durasi animasi
+  });
+</script>
 </body>
 </html>
