@@ -15,14 +15,12 @@ html{
 }
 
 body{
-  color: white; /* agar teks tetap terlihat */
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
-    z-index: 999
 }
 
   .slide-left {
@@ -129,6 +127,8 @@ section{
 
 .home{
     background: url('bg.gif') no-repeat center center fixed;
+     background-size: cover;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
