@@ -22,6 +22,25 @@
       min-height: 100vh;
     }
 
+      .btn {
+      padding: 0.9rem 2.2rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: white;
+      background: var(--accent);
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px rgba(155, 93, 229, 0.4);
+    }
+
+    .btn:hover {
+      background: #a770ef;
+      box-shadow: 0 0 25px var(--accent);
+      transform: translateY(-2px);
+    }
+
     header {
       display: flex;
       justify-content: space-between;
@@ -130,7 +149,7 @@
       <div class="dropdown" id="dropdownMenu">
         <a href="index.html">back to portfolio</a>
         <a href="#">Projects</a>
-        <a href="#">Logout</a>
+        <a 
       </div>
     </div>
   </header>
@@ -148,6 +167,7 @@ Being a santri means my schedule's tight, but I still find bits of time to explo
 
 Eventually, I’d love to build something useful. Maybe go back to making bots again, but this time knowing what I’m actually doing. Until then, I’ll keep learning. Slowly, steadily
     </p>
+       <a href="index.html" class="btn">← Back to Home</a>
   </main>
 
   <script>
