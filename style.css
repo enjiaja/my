@@ -234,6 +234,7 @@ span{
 
 .typing-text span::after{
     content: "";
+    color: transparent;
     position: absolute;
     width: calc(100% + 8px);
     height: 100%;
