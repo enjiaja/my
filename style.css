@@ -8,7 +8,7 @@
     border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
-      background: url('bg.gif') no-repeat center center fixed;
+    background: "black";
     background-size: cover;
 }
 
