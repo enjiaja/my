@@ -6,20 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Enji? yes im here</title>
 </head>
 <body>
     <header>
         <a href="#" class="logo">Enji</a>
 
-        <nav>
-            <a href="#" class="active"> Home</a>
-             <a href="about.html" >about</a>
-            <a href="#" >Skill</a>
-            <a href="#" >Gallery</a>
-            <a href="#" >Project</a>
-            <a href="#" >Contact</a>
-        </nav>
+        <!-- Navbar -->
+    <nav class="site-nav">
+      <button class="sidebar-toggle">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </nav>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar collapsed">
+        <!-- Sidebar header -->
+        <div class="sidebar-header">
+          <img src="logo.png" alt="enji?" class="header-logo" />
+          <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
+        </div>
+        <div class="sidebar-content">
+          <!-- Search Form -->
+          <form action="#" class="search-form">
+            <span class="material-symbols-rounded">search</span>
+            <input type="search" placeholder="Search..." required />
+          </form>
+          <!-- Sidebar Menu -->
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="#" class="menu-link active">
+                <span class="material-symbols-rounded">dashboard</span>
+                <span class="menu-label">Home</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">insert_chart</span>
+                <span class="menu-label">About</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">notifications</span>
+                <span class="menu-label">Skill</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">star</span>
+                <span class="menu-label">Gallery</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">storefront</span>
+                <span class="menu-label">Project</span>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <span class="material-symbols-rounded">group</span>
+                <span class="menu-label">contact</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+          <button class="theme-toggle">
+            <div class="theme-label">
+              <span class="theme-icon material-symbols-rounded">dark_mode</span>
+              <span class="theme-text">Dark Mode</span>
+            </div>
+            <div class="theme-toggle-track">
+              <div class="theme-toggle-indicator"></div>
+            </div>
+          </button>
+        </div>
+      </aside>
     </header>
     <section class="home">
         <div class="home-img">
