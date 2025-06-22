@@ -82,7 +82,7 @@ header{
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
-  background: purple;
+  background: black;
   border-right: 1px solid white;
   box-shadow: 0 3px 9px black;
   transition: width 0.4s ease;
