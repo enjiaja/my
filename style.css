@@ -172,7 +172,7 @@ header{
   display: flex;
   padding: 0 15px;
   white-space: nowrap;
-  background: var(--color-bg-secondary);
+  background: purple;
   transition: 0.4s ease;
 }
 
@@ -182,7 +182,7 @@ header{
 
 .sidebar-content .search-form:focus-within,
 .sidebar.collapsed .search-form:hover {
-  background: var(--color-hover-secondary);
+  background: purple;
 }
 
 .sidebar-content .search-form span {
@@ -196,7 +196,7 @@ header{
   width: 100%;
   margin-left: 15px;
   font-size: 1rem;
-  color: var(--color-text-primary);
+  color: purple;
 }
 
 .search-form input::placeholder {
