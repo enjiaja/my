@@ -132,6 +132,7 @@ section{
     align-items: center;
     gap: 8rem;
     background-color: black;
+    background-size: cover;
 }
 
 .home .home-content h1{
