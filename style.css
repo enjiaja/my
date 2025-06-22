@@ -164,7 +164,7 @@ header{
   scrollbar-width: none;
 }
 
-.sidebar-content .search-form {
+.sidebar-content {
   border-radius: 8px;
   min-height: 48px;
   margin: 5px 0 20px;
@@ -176,32 +176,19 @@ header{
   transition: 0.4s ease;
 }
 
-.sidebar.collapsed .search-form:hover {
+.sidebar.collapsed:hover {
   cursor: pointer;
 }
 
-.sidebar-content .search-form:focus-within,
-.sidebar.collapsed .search-form:hover {
+.sidebar-content:focus-within,
+.sidebar.collapsed:hover {
   background: purple;
 }
 
-.sidebar-content .search-form span {
+.sidebar-content span {
   color: var(--color-text-placeholder);
 }
 
-.search-form input {
-  background: none;
-  outline: none;
-  border: none;
-  width: 100%;
-  margin-left: 15px;
-  font-size: 1rem;
-  color: purple;
-}
-
-.search-form input::placeholder {
-  color: var(--color-text-placeholder);
-}
 
 .sidebar-content .menu-list {
   display: flex;
