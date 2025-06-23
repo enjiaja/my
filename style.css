@@ -61,10 +61,10 @@ body{
       }
     }
 
-body.loaded .home {
+body.loaded .home-content {
       opacity: 1;
       transform: translateY(0);
-
+    }
   .slide-left {
     opacity: 0;
     transform: translateX(-100px);
@@ -434,6 +434,8 @@ section{
     font-size: 6rem;
     font-weight: 700;
     line-height: 1.3;
+    transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
 }
 
 span{
@@ -444,10 +446,14 @@ span{
     font-size: 4rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
 }
 
 .home-content p{
     font-size: 1.6rem;
+    transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
 }
 
 .home-img{
