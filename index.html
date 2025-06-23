@@ -11,89 +11,67 @@
     <title>Enji? yes im here</title>
 </head>
 <body>
-    <header>
 
-        <!-- Navbar -->
-  <nav class="site-nav">
-    <button class="sidebar-toggle">
-      <span class="material-symbols-rounded">menu</span>
-    </button>
-  </nav>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar collapsed">
-      <!-- Sidebar header -->
-      <div class="sidebar-header">
-        <img src="logo.png" alt="enji?" class="header-logo" />
+  <!-- 🔄 Loader Spinner -->
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <header>
+    <!-- Navbar -->
+    <nav class="site-nav">
+      <button class="sidebar-toggle">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </nav>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar collapsed">
+        <!-- Sidebar header -->
+        <div class="sidebar-header">
+          <img src="logo.png" alt="enji?" class="header-logo" />
           <div class="logo-text">Enji?</div>
-        <button class="sidebar-toggle">
-          <span class="material-symbols-rounded">chevron_left</span>
-        </button>
-      </div>
-      <div class="sidebar-content">
-        <!-- Sidebar Menu -->
-        <ul class="menu-list">
-          <li class="menu-item">
-            <a href="#" class="menu-link active">
-              <span class="material-symbols-rounded">home</span>
-              <span class="menu-label">Home</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <span class="material-symbols-rounded">info</span>
-              <span class="menu-label">About</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <span class="material-symbols-rounded">psychology_alt</span>
-              <span class="menu-label">Skill</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <span class="material-symbols-rounded">photo_library</span>
-              <span class="menu-label">Gallery</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <span class="material-symbols-rounded">work</span>
-              <span class="menu-label">Project</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <span class="material-symbols-rounded">call</span>
-              <span class="menu-label">Contact</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- Sidebar Footer -->
-        </button>
-      </div>
-    </aside>
-    </header>
-    <section class="home">
-        <div class="home-img">
-            <img src="main.jpg" alt="">
-        </di>
-        <div class="home-content">
-            <h1>Hi, It's <span>Enji</span></h1>
-            <h3 class="typing-text">I'm a <span></span></h3>
-            <p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia... </p>
-            <div class="social-icons">
-                <a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
-                <a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-            <a href="about.html" class="btn">About me</a>
+          <button class="sidebar-toggle">
+            <span class="material-symbols-rounded">chevron_left</span>
+          </button>
         </div>
-    </section>
-    <script>setTimeout(() => {
+        <div class="sidebar-content">
+          <!-- Sidebar Menu -->
+          <ul class="menu-list">
+            <li class="menu-item"><a href="#" class="menu-link active"><span class="material-symbols-rounded">home</span><span class="menu-label">Home</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="material-symbols-rounded">info</span><span class="menu-label">About</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="material-symbols-rounded">psychology_alt</span><span class="menu-label">Skill</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="material-symbols-rounded">photo_library</span><span class="menu-label">Gallery</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="material-symbols-rounded">work</span><span class="menu-label">Project</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="material-symbols-rounded">call</span><span class="menu-label">Contact</span></a></li>
+          </ul>
+        </div>
+      </aside>
+  </header>
+
+  <section class="home">
+    <div class="home-img">
+      <img src="main.jpg" alt="">
+    </div>
+    <div class="home-content">
+      <h1>Hi, It's <span>Enji</span></h1>
+      <h3 class="typing-text">I'm a <span></span></h3>
+      <p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia... </p>
+      <div class="social-icons">
+        <a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
+        <a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <a href="about.html" class="btn">About me</a>
+    </div>
+  </section>
+
+  <!-- Script to hide loader and show content -->
+  <script>
+    setTimeout(() => {
       document.body.classList.add('loaded');
-    }, 2800); </script>
-  </body>
+    }, 2800);
+  </script>
+
+</body>
 </html>
