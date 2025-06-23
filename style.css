@@ -25,28 +25,33 @@ body{
     background-size: cover;
 }
 .loader {
+ /* Loader Container */
+    .loader {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at center, #6a00ff, #0a0a0a 80%);
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       z-index: 9999;
       animation: fadeOut 1s ease 2.8s forwards;
     }
 
-    .glow-text {
-      font-size: 32px;
-      color: #d0aaff;
-      text-shadow: 0 0 10px #c77dff, 0 0 20px #a855f7, 0 0 30px #6b21a8;
-      animation: pulse 2s infinite;
+    /* Futuristic circle spinner */
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid transparent;
+      border-top: 5px solid #a855f7;
+      border-right: 5px solid #9333ea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 20px #9333ea;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     @keyframes fadeOut {
