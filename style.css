@@ -21,7 +21,20 @@ body{
     background-color: black;
     color: white;
 }
+/* Hamburger Button */
+.hamburger {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: purple; /* warna ungu */
+}
 
+/* Untuk layar kecil */
+@media(max-width:995px){
+    .hamburger {
+        display: block;
+        z-index: 200;
+    }
 header{
     margin-top: 20px;
     position: fixed;
@@ -65,37 +78,36 @@ nav a.active{
 }
 
 @media(max-width:995px){
-    nav{
+    nav {
         position: absolute;
         display: none;
-        top: 0;
-        right: 0;
-        width: 40%;
-        border-left: 3px solid #b74b4b;
-        border-bottom: 3px solid #b74b4b;
-        border-bottom-left-radius: 2rem;
-        padding: 1rem solid;
-        background-color: #161616;
-        border-top: 0.1rem solid rgba(0,0,0,0.1);
+        top: 100%;
+        right: 2rem;
+        width: 220px;
+        border-radius: 1rem;
+        padding: 2rem;
+        background-color: #2a002a; /* ungu gelap */
+        border: 2px solid purple;
     }
 
     nav.active{
         display: block;
     }
 
-    nav a{
+    nav a {
         display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
+        font-size: 1.8rem;
+        margin: 1.5rem 0;
+        color: white;
     }
 
     nav a:hover,
-    nav a.active{
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border-bottom: 0.5rem solid #b74b4b;
+    nav a.active {
+        color: purple;
+        border-bottom: 2px solid purple;
     }
 }
+
 
 section{
     min-height: 100vh;
