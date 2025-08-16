@@ -41,8 +41,14 @@
 <a href="about.html" class="btn">About me</a>
 </div>
 </section>
-<script>setTimeout(() => {
-document.body.classList.add('loaded');
-}, 2800); </script>
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const nav = document.querySelector("nav");
+
+  hamburger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+  });
+</script>
+
 </body>
 </html>
