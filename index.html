@@ -20,35 +20,34 @@
   </nav>
   <div class="hamburger" id="hamburger">
     <i class="fa-solid fa-bars"></i>
-  </div>        
-</header>
-<section class="home">
-<div class="home-img">
-<img src="main.jpg" alt="">
-</di>
-<div class="home-content">
-<h1>Hi, It's <span>Enji</span></h1>
-<h3 class="typing-text">I'm a <span></span></h3>
-<p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia... </p>
-            <div class="loader">
-    <div class="spinner"></div>
   </div>
-<div class="social-icons">
-<a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
-<a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
-<a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
-</div>
-<a href="about.html" class="btn">About me</a>
-</div>
+</header>
+
+<section class="home">
+  <div class="home-img">
+    <img src="main.jpg" alt="">
+  </div>
+  <div class="home-content">
+    <h1>Hi, It's <span>Enji</span></h1>
+    <h3 class="typing-text">I'm a <span></span></h3>
+    <p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia... </p>
+    <div class="loader">
+      <div class="spinner"></div>
+    </div>
+    <div class="social-icons">
+      <a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
+      <a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+    <a href="about.html" class="btn">About me</a>
+  </div>
 </section>
+
+<script src="script.js"></script>
 <script>
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.querySelector("nav");
-
-  hamburger.addEventListener("click", () => {
-    nav.classList.toggle("active");
-  });
+setTimeout(() => {
+  document.body.classList.add('loaded');
+}, 2800);
 </script>
-
 </body>
 </html>
