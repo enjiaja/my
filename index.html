@@ -43,11 +43,13 @@
   </div>
 </section>
 
-<script src="script.js"></script>
-<script>
-setTimeout(() => {
-  document.body.classList.add('loaded');
-}, 2800);
-</script>
+<script src="const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector("nav");
+
+hamburger.addEventListener("click", () => {
+  nav.classList.toggle("active");
+});
+"></script>
+
 </body>
 </html>
