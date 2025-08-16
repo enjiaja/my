@@ -21,20 +21,7 @@ body{
     background-color: black;
     color: white;
 }
-/* Hamburger Button */
-.hamburger {
-    display: none;
-    font-size: 2.5rem;
-    cursor: pointer;
-    color: purple; /* warna ungu */
-}
 
-/* Untuk layar kecil */
-@media(max-width:995px){
-    .hamburger {
-        display: block;
-        z-index: 200;
-    }
 header{
     margin-top: 20px;
     position: fixed;
@@ -52,7 +39,7 @@ header{
 
 .logo{
     font-size: 3rem;
-    color: #b74b4b;
+    color: purple;
     font-weight: 800;
     cursor: pointer;
     transition: 0.5s ease;
@@ -73,12 +60,20 @@ nav a{
 
 nav a:hover,
 nav a.active{
-    color: #b74b4b;
-    border-bottom: 3px solid #b74b4b;
+    color: purple;
+    border-bottom: 3px solid purple;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: purple;
 }
 
 @media(max-width:995px){
-    nav {
+    nav{
         position: absolute;
         display: none;
         top: 100%;
@@ -86,7 +81,7 @@ nav a.active{
         width: 220px;
         border-radius: 1rem;
         padding: 2rem;
-        background-color: #2a002a; /* ungu gelap */
+        background-color: #2a002a;
         border: 2px solid purple;
     }
 
@@ -94,7 +89,7 @@ nav a.active{
         display: block;
     }
 
-    nav a {
+    nav a{
         display: block;
         font-size: 1.8rem;
         margin: 1.5rem 0;
@@ -102,12 +97,16 @@ nav a.active{
     }
 
     nav a:hover,
-    nav a.active {
+    nav a.active{
         color: purple;
         border-bottom: 2px solid purple;
     }
-}
 
+    .hamburger {
+        display: block;
+        z-index: 200;
+    }
+}
 
 section{
     min-height: 100vh;
@@ -129,7 +128,7 @@ section{
 }
 
 span{
-    color: #b74b4b;
+    color: purple;
 }
 
 .home-content h3{
@@ -150,7 +149,7 @@ span{
     position: relative;
     width: 32vw;
     border-radius: 50%;
-    box-shadow: 0 0 25px solid #b74b4b;
+    box-shadow: 0 0 25px solid purple;
     cursor: pointer;
     transition: 0.2s linear;
 }
@@ -167,19 +166,19 @@ span{
     width: 4rem;
     height: 4rem;
     background-color: transparent;
-    border: 0.2rem solid #b74b4b;
+    border: 0.2rem solid purple;
     font-size: 2rem;
     border-radius: 50%;
     margin: 3rem 1.5rem 3rem 0;
     transition: 0.3s ease;
-    color: #b74b4b;
+    color: purple;
 }
 
 .social-icons a:hover{
     color: black;
     transform: scale(1.3) translateY(-5px);
-    background-color: #b74b4b;
-    box-shadow: 0  0 25px #b74b4b;
+    background-color: purple;
+    box-shadow: 0  0 25px purple;
 }
 
 .btn{
@@ -188,19 +187,19 @@ span{
     background-color: black;
     border-radius: 4rem;
     font-size: 1.6rem;
-    color: #b74b4b;
+    color: purple;
     letter-spacing: 0.3rem;
     font-weight: 600;
-    border: 2px solid #b74b4b;
+    border: 2px solid purple;
     transition: 0.3s ease;
     cursor: pointer;
 }
 
 .btn:hover{
     transform: scale3d(1.03);
-    background-color: #b74b4b;
+    background-color: purple;
     color: black;
-    box-shadow: 0 0 25px #b74b4b;
+    box-shadow: 0 0 25px purple;
 }
 
 .typing-text{
@@ -215,7 +214,7 @@ span{
 
 .typing-text span::before{
     content: "software Developer";
-    color: #b74b4b;
+    color: purple;
     animation: words 20s infinite;
 }
 
@@ -232,7 +231,7 @@ span{
 
 @keyframes cursor{
     to{
-        border-left: 3px solid #b74b4b;
+        border-left: 3px solid purple;
     }
 }
 
