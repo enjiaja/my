@@ -78,7 +78,7 @@ nav a.active{
         display: none;
         top: 100%;
         right: 2rem;
-        width: 220px;
+        width: 100%;
         border-radius: 1rem;
         padding: 2rem;
         background-color: #2a002a;
@@ -109,7 +109,7 @@ nav a.active{
 }
 
 section{
-    min-height: 100vh;
+    min-height: 100%;
     padding: 5rem 9% 5rem;
 }
 
