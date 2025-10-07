@@ -38,18 +38,17 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: blur(2px) brightness(0.6);
+      filter: blur(3px) brightness(0.6);
       z-index: -2;
     }
 
-    /* Overlay gelap agar teks tetap terbaca */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 0, 20, 0.6);
+      background: rgba(10, 0, 20, 0.5);
       z-index: -1;
     }
 
@@ -228,31 +227,99 @@
       margin-bottom: 1rem;
     }
 
-    .project h3 {
-      color: var(--light);
-      margin-bottom: 0.5rem;
-    }
-
     /* === GALLERY === */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
       margin-top: 2rem;
     }
 
-    .gallery-grid img {
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .gallery-item img {
       width: 100%;
       height: 160px;
       object-fit: cover;
-      border-radius: 10px;
       transition: 0.3s;
     }
 
-    .gallery-grid img:hover {
+    .gallery-item:hover img {
       transform: scale(1.05);
-      box-shadow: 0 0 15px var(--accent);
+      filter: brightness(0.7);
     }
+
+    .preview-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .gallery-item:hover .preview-btn {
+      opacity: 1;
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .lightbox .close,
+    .lightbox .next,
+    .lightbox .prev {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 15px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .lightbox .close:hover,
+    .lightbox .next:hover,
+    .lightbox .prev:hover {
+      background: var(--accent);
+    }
+
+    .lightbox .close { top: 30px; right: 40px; }
+    .lightbox .next { right: 40px; top: 50%; transform: translateY(-50%); }
+    .lightbox .prev { left: 40px; top: 50%; transform: translateY(-50%); }
 
     /* === CONTACT === */
     form {
@@ -288,16 +355,9 @@
       position: relative;
     }
 
-    /* === RESPONSIVE === */
     @media (max-width: 768px) {
-      .home {
-        flex-direction: column;
-      }
-
-      .home-content {
-        margin-left: 0;
-        text-align: center;
-      }
+      .home { flex-direction: column; }
+      .home-content { margin-left: 0; text-align: center; }
 
       nav {
         display: none;
@@ -311,13 +371,8 @@
         border-radius: 10px;
       }
 
-      nav.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: block;
-      }
+      nav.active { display: flex; }
+      .hamburger { display: block; }
     }
   </style>
 </head>
@@ -370,21 +425,9 @@
   <section id="projects">
     <h2>Projects</h2>
     <div class="project-grid">
-      <div class="project">
-        <img src="project1.jpg" alt="Project 1">
-        <h3>NguliCode</h3>
-        <p>Website belajar coding gratis untuk pemula.</p>
-      </div>
-      <div class="project">
-        <img src="project2.jpg" alt="Project 2">
-        <h3>Simple Bot</h3>
-        <p>WhatsApp bot sederhana dengan fitur otomatisasi pesan.</p>
-      </div>
-      <div class="project">
-        <img src="project3.jpg" alt="Project 3">
-        <h3>Portfolio Web</h3>
-        <p>Website pribadi modern untuk menampilkan karya dan profil.</p>
-      </div>
+      <div class="project"><img src="project1.jpg" alt="Project 1"><h3>NguliCode</h3><p>Website belajar coding gratis untuk pemula.</p></div>
+      <div class="project"><img src="project2.jpg" alt="Project 2"><h3>Simple Bot</h3><p>WhatsApp bot sederhana dengan fitur otomatisasi pesan.</p></div>
+      <div class="project"><img src="project3.jpg" alt="Project 3"><h3>Portfolio Web</h3><p>Website pribadi modern untuk menampilkan karya dan profil.</p></div>
     </div>
   </section>
 
@@ -392,13 +435,24 @@
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery-grid">
-      <img src="gal1.jpg" alt="Gallery 1">
-      <img src="gal2.jpg" alt="Gallery 2">
-      <img src="gal3.jpg" alt="Gallery 3">
-      <img src="gal4.jpg" alt="Gallery 4">
-      <img src="gal5.jpg" alt="Gallery 5">
+      <div class="gallery-item"><img src="https://files.catbox.moe/swxq61.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/7fz495.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/lg5hdy.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/0zu1p0.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/ab1q8a.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/53dglf.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/vi0jhx.png" alt=""><button class="preview-btn">Preview</button></div>
+      <div class="gallery-item"><img src="https://files.catbox.moe/xi1lpb.png" alt=""><button class="preview-btn">Preview</button></div>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="closeBtn">&times;</span>
+    <span class="prev" id="prevBtn">&#10094;</span>
+    <img id="lightbox-img" src="" alt="">
+    <span class="next" id="nextBtn">&#10095;</span>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact">
@@ -412,23 +466,44 @@
     </form>
   </section>
 
-  <footer>
-    <p>© 2025 Enji. Made with Enji's | All rights reserved.</p>
-  </footer>
+  <footer><p>© 2025 Enji. Made with 💜 | All rights reserved.</p></footer>
 
   <script>
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('#nav-menu a');
+    const previewBtns = document.querySelectorAll('.preview-btn');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('closeBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+    let currentIndex = 0;
 
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
+    hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+    navLinks.forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+
+    previewBtns.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        currentIndex = i;
+        lightboxImg.src = galleryImgs[i].src;
+        lightbox.classList.add('active');
+      });
     });
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
+    closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % galleryImgs.length;
+      lightboxImg.src = galleryImgs[currentIndex].src;
+    });
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + galleryImgs.length) % galleryImgs.length;
+      lightboxImg.src = galleryImgs[currentIndex].src;
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.classList.remove('active');
     });
   </script>
 </body>
