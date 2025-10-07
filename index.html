@@ -1,49 +1,435 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-<link rel="icon" href="logo.png" type="image/png">
-<title>Enji? yes im here</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enji | Portfolio</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --accent: #a259ff;
+      --light: #e3d9ff;
+      --text: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* === BACKGROUND VIDEO === */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px) brightness(0.6);
+      z-index: -2;
+    }
+
+    /* Overlay gelap agar teks tetap terbaca */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 0, 20, 0.6);
+      z-index: -1;
+    }
+
+    /* === HEADER === */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 10%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(25, 0, 50, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--accent);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* === HOME === */
+    .home {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 10%;
+    }
+
+    .home-img video {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent);
+      margin-bottom: 1.5rem;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 20px var(--accent); }
+      to { box-shadow: 0 0 40px var(--accent); }
+    }
+
+    .home-content {
+      max-width: 500px;
+      margin-left: 2rem;
+    }
+
+    .home-content h1 {
+      font-size: 2.4rem;
+      color: var(--light);
+    }
+
+    .home-content h1 span {
+      color: var(--accent);
+    }
+
+    .home-content p {
+      margin-top: 1rem;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    .social-icons {
+      margin-top: 1.2rem;
+    }
+
+    .social-icons a {
+      color: var(--accent);
+      margin-right: 1rem;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #b47aff;
+      box-shadow: 0 0 20px var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* === SECTIONS === */
+    section {
+      padding: 4rem 10%;
+      position: relative;
+      z-index: 1;
+    }
+
+    #about h2,
+    #projects h2,
+    #gallery h2,
+    #contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    #about p {
+      color: #ddd;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+
+    /* === PROJECTS === */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 15px rgba(162, 89, 255, 0.4);
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .project h3 {
+      color: var(--light);
+      margin-bottom: 0.5rem;
+    }
+
+    /* === GALLERY === */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    /* === CONTACT === */
+    form {
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    input, textarea {
+      padding: 0.8rem;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #bbb;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 3rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .home {
+        flex-direction: column;
+      }
+
+      .home-content {
+        margin-left: 0;
+        text-align: center;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        background: rgba(25, 0, 50, 0.95);
+        position: absolute;
+        top: 70px;
+        right: 10%;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <a href="#" class="logo">Enji</a>
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <div class="hamburger" id="hamburger">
-    <i class="fa-solid fa-bars"></i>
-  </div>
-</header>
+  <!-- Background Video -->
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="https://files.catbox.moe/5ngux4.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
 
-<section class="home">
-  <div class="home-img">
-    <img src="main.jpg" alt="">
-  </div>
-  <div class="home-content">
-    <h1>Hi, It's <span>Enji</span></h1>
-    <h3 class="typing-text">I'm a <span></span></h3>
-    <p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia... </p>
-    <div class="loader">
-      <div class="spinner"></div>
+  <header>
+    <a href="#" class="logo">Enji</a>
+    <nav id="nav-menu">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></div>
+  </header>
+
+  <!-- HOME -->
+  <section class="home" id="home">
+    <div class="home-img">
+      <video autoplay muted loop playsinline>
+        <source src="https://files.catbox.moe/ugu1ty.mp4" type="video/mp4">
+      </video>
     </div>
-    <div class="social-icons">
-      <a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
-      <a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
-      <a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
+    <div class="home-content">
+      <h1>Hi, It's <span>Enji</span></h1>
+      <p>Hey, my name’s Enji, a vocational high school student in 10th grade — also a santri, living and studying in a pesantren in Indonesia.</p>
+      <div class="social-icons">
+        <a href="https://github.com/enjiaja"><i class="fa-brands fa-github"></i></a>
+        <a href="https://wa.me/+6285143286752"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://instagram.com/enji0_"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <a href="#about" class="btn">About Me</a>
     </div>
-    <a href="about.html" class="btn">About me</a>
-  </div>
-</section>
+  </section>
 
-<script src="script.js"></script>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Enji</h2>
+    <p>I started coding from WhatsApp bot experiments, then moved into HTML, CSS, and frontend. My goal is to build something useful, combining creativity and logic.</p>
+  </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <img src="project1.jpg" alt="Project 1">
+        <h3>NguliCode</h3>
+        <p>Website belajar coding gratis untuk pemula.</p>
+      </div>
+      <div class="project">
+        <img src="project2.jpg" alt="Project 2">
+        <h3>Simple Bot</h3>
+        <p>WhatsApp bot sederhana dengan fitur otomatisasi pesan.</p>
+      </div>
+      <div class="project">
+        <img src="project3.jpg" alt="Project 3">
+        <h3>Portfolio Web</h3>
+        <p>Website pribadi modern untuk menampilkan karya dan profil.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-grid">
+      <img src="gal1.jpg" alt="Gallery 1">
+      <img src="gal2.jpg" alt="Gallery 2">
+      <img src="gal3.jpg" alt="Gallery 3">
+      <img src="gal4.jpg" alt="Gallery 4">
+      <img src="gal5.jpg" alt="Gallery 5">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="041c8e45-8306-48d1-b87f-be56174e11cb">
+      <input type="text" name="name" placeholder="Nama" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Pesan..." required></textarea>
+      <button class="btn" type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Enji. Made with Enji's | All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('#nav-menu a');
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
