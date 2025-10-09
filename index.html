@@ -378,6 +378,401 @@
 </head>
 
 <body>
+  <!-- ===== Dynamic Island + Notification (paste before </body>) ===== -->
+<style>
+  :root {
+    --island-accent: var(--accent, #a259ff);
+    --island-accent-2: #8b3fff;
+  }
+
+  /* Container top-center */
+  #dynamic-island {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Pill */
+  .island-pill {
+    width: 146px;
+    height: 40px;
+    border-radius: 999px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(162,89,255,0.12), rgba(162,89,255,0.06));
+    border: 1px solid rgba(162,89,255,0.18);
+    box-shadow: 0 8px 30px rgba(162,89,255,0.10), 0 3px 8px rgba(0,0,0,0.5);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: width .22s cubic-bezier(.2,.9,.3,1), transform .12s, box-shadow .12s;
+    backdrop-filter: blur(6px) saturate(120%);
+  }
+  .island-pill:active { transform: translateY(1px) scale(.997); }
+
+  .island-dot {
+    width:10px; height:10px; border-radius:50%;
+    background: linear-gradient(180deg, var(--island-accent), var(--island-accent-2));
+    box-shadow: 0 8px 24px rgba(162,89,255,0.26);
+    flex-shrink:0;
+  }
+  .island-text { font-size: .92rem; color: #f7f5ff; white-space:nowrap; max-width:90px; overflow:hidden; text-overflow:ellipsis; }
+
+  /* Notification badge inside pill (animated) */
+  .island-notif {
+    position: absolute;
+    top: -6px;
+    right: calc(50% - 80px);
+    transform-origin: center;
+    display: inline-flex;
+    align-items: center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:18px;
+    background: linear-gradient(180deg, rgba(162,89,255,0.95), rgba(139,63,255,0.95));
+    color:#fff;
+    font-weight:700;
+    font-size:0.86rem;
+    box-shadow: 0 10px 30px rgba(162,89,255,0.24);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px) scale(.96);
+    transition: opacity .22s ease, transform .22s cubic-bezier(.2,.9,.3,1);
+    z-index: 10001;
+  }
+  .island-notif.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Expanded panel under island */
+  #island-panel {
+    position: fixed;
+    top: calc(18px + 40px + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    width: min(420px, calc(100% - 40px));
+    background: linear-gradient(180deg, rgba(12,8,18,0.98), rgba(16,12,24,0.95));
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 18px 60px rgba(5,3,10,0.6), 0 6px 18px rgba(162,89,255,0.06);
+    border: 1px solid rgba(162,89,255,0.10);
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: top center;
+    transition: opacity .22s ease, transform .25s cubic-bezier(.2,.95,.15,1);
+    z-index: 9998;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+  }
+  #island-panel.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .panel-left { padding-right: 8px; }
+  .panel-right { min-width: 110px; display:flex; flex-direction:column; gap:8px; align-items:flex-end; justify-content:flex-start; }
+
+  .panel-row { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:6px 8px; border-radius:8px; color:#e9e7ff; }
+  .panel-row .k { color:#cfc9ff; font-weight:600; font-size:.86rem; }
+  .panel-row .v { color:#dcd8ff; font-size:.9rem; text-align:right; max-width:62%; word-break:break-word; }
+
+  .panel-header { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:6px 8px; }
+  .panel-title { font-weight:700; color:var(--island-accent); letter-spacing:.6px; font-size: .95rem; }
+
+  .small-btn { background: rgba(162,89,255,0.12); color: #f3ecff; border: 1px solid rgba(162,89,255,0.06); padding:6px 8px; border-radius:8px; cursor:pointer; font-weight:600; font-size:.82rem; }
+  .small-btn:active { transform: translateY(1px); }
+
+  /* small screens */
+  @media (max-width:420px) {
+    .island-pill { width: 126px; height:36px; padding:0 10px; }
+    #island-panel { width: calc(100% - 28px); left: 50%; top: calc(18px + 36px + 8px); }
+    .island-notif { right: calc(50% - 66px); top: -4px; padding:6px 8px; font-size: .82rem; }
+  }
+</style>
+
+<!-- pill + notif + panel -->
+<div id="dynamic-island" aria-live="polite">
+  <div id="island-notif" class="island-notif" role="status" aria-hidden="true">New • Test</div>
+
+  <div id="islandPill" class="island-pill" role="button" tabindex="0" aria-expanded="false" aria-controls="island-panel" title="Klik untuk detail">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="island-dot" id="island-status-dot" aria-hidden="true"></div>
+      <div class="island-text" id="island-brief">--:-- • IP</div>
+    </div>
+  </div>
+</div>
+
+<div id="island-panel" role="dialog" aria-hidden="true" aria-label="Device & session info">
+  <div class="panel-left">
+    <div class="panel-header">
+      <div class="panel-title">System Snapshot</div>
+      <div style="display:flex;gap:8px">
+        <button id="island-refresh" class="small-btn" title="Refresh">Refresh</button>
+        <button id="island-close" class="small-btn" title="Close">Close</button>
+      </div>
+    </div>
+
+    <div class="panel-row"><div class="k">Waktu</div><div class="v" id="info-time-full">—</div></div>
+    <div class="panel-row"><div class="k">IP Publik</div><div class="v" id="info-ip">Mencari...</div></div>
+    <div class="panel-row"><div class="k">Lokasi</div><div class="v" id="info-loc">—</div></div>
+    <div class="panel-row"><div class="k">Browser</div><div class="v" id="info-browser">—</div></div>
+    <div class="panel-row"><div class="k">OS</div><div class="v" id="info-os">—</div></div>
+  </div>
+
+  <div class="panel-right">
+    <div class="panel-row" style="background:rgba(255,255,255,0.02);border-radius:10px;"><div class="k">Resolusi</div><div class="v" id="info-res">—</div></div>
+    <div class="panel-row" style="background:rgba(255,255,255,0.02);border-radius:10px;"><div class="k">Timezone</div><div class="v" id="info-tz">—</div></div>
+    <div class="panel-row" style="background:rgba(255,255,255,0.02);border-radius:10px;"><div class="k">Bahasa</div><div class="v" id="info-lang">—</div></div>
+    <div class="panel-row" style="background:rgba(255,255,255,0.02);border-radius:10px;"><div class="k">Network</div><div class="v" id="info-net">—</div></div>
+    <div class="panel-row" style="background:rgba(255,255,255,0.02);border-radius:10px;"><div class="k">Baterai</div><div class="v" id="info-batt">—</div></div>
+
+    <div style="width:100%; text-align:center; margin-top:6px;">
+      <div class="small-btn" id="copy-info">Copy</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- refs ---
+  const pill = document.getElementById('islandPill');
+  const panel = document.getElementById('island-panel');
+  const notif = document.getElementById('island-notif');
+  const closeBtn = document.getElementById('island-close');
+  const refreshBtn = document.getElementById('island-refresh');
+  const copyBtn = document.getElementById('copy-info');
+  const brief = document.getElementById('island-brief');
+  const statusDot = document.getElementById('island-status-dot');
+
+  const el_time = document.getElementById('info-time-full');
+  const el_ip = document.getElementById('info-ip');
+  const el_loc = document.getElementById('info-loc');
+  const el_browser = document.getElementById('info-browser');
+  const el_os = document.getElementById('info-os');
+  const el_res = document.getElementById('info-res');
+  const el_tz = document.getElementById('info-tz');
+  const el_lang = document.getElementById('info-lang');
+  const el_net = document.getElementById('info-net');
+  const el_batt = document.getElementById('info-batt');
+
+  // session uptime
+  const openedAt = Date.now();
+
+  // --- utils ---
+  function detectBrowser() {
+    const ua = navigator.userAgent;
+    if (/Edg\//.test(ua)) return "Edge";
+    if (/OPR\//.test(ua) || /Opera/.test(ua)) return "Opera";
+    if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) return "Chrome";
+    if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) return "Safari";
+    if (/Firefox\//.test(ua)) return "Firefox";
+    return ua.split(')')[0];
+  }
+  function detectOS() {
+    const p = navigator.platform.toLowerCase(), ua = navigator.userAgent.toLowerCase();
+    if (/windows/.test(p)) return "Windows";
+    if (/mac/.test(p)) return "macOS";
+    if (/linux/.test(p)) return "Linux";
+    if (/iphone|ipad|ipod/.test(ua)) return "iOS";
+    if (/android/.test(ua)) return "Android";
+    return "Unknown";
+  }
+
+  // --- clock + uptime ---
+  function formatUptime() {
+    const s = Math.floor((Date.now() - openedAt)/1000);
+    const h = Math.floor(s/3600); const m = Math.floor((s%3600)/60); const sec = s%60;
+    if (h>0) return `${h}h ${m}m`;
+    if (m>0) return `${m}m ${sec}s`;
+    return `${sec}s`;
+  }
+  function updateClock() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    const ss = String(now.getSeconds()).padStart(2,'0');
+    el_time.textContent = `${now.toLocaleString()} • Uptime: ${formatUptime()}`;
+    brief.textContent = `${hh}:${mm} • ${el_ip.textContent === 'Mencari...' ? 'IP' : el_ip.textContent}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // --- basic device info ---
+  el_browser.textContent = detectBrowser();
+  el_os.textContent = detectOS();
+  el_res.textContent = `${screen.width}×${screen.height}`;
+  el_tz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || '—';
+  el_lang.textContent = navigator.language || navigator.userLanguage || '—';
+
+  // --- network info ---
+  function updateNetworkInfo() {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn) {
+      const type = conn.effectiveType || conn.type || 'unknown';
+      el_net.textContent = `${type}${conn.downlink ? ' • ' + conn.downlink + 'Mbps' : ''}`;
+    } else {
+      el_net.textContent = 'n/a';
+    }
+  }
+  updateNetworkInfo();
+  if (navigator.connection) navigator.connection.addEventListener('change', updateNetworkInfo);
+
+  // --- battery ---
+  if (navigator.getBattery) {
+    navigator.getBattery().then(b => {
+      function setBatt() {
+        el_batt.textContent = Math.round(b.level*100) + '%' + (b.charging ? ' (charging)' : '');
+      }
+      setBatt();
+      b.addEventListener('levelchange', setBatt);
+      b.addEventListener('chargingchange', setBatt);
+    }).catch(()=> el_batt.textContent = 'n/a');
+  } else el_batt.textContent = 'n/a';
+
+  // --- ip & geo ---
+  async function fetchIPandGeo() {
+    try {
+      const r = await fetch('https://api.ipify.org?format=json');
+      const j = await r.json();
+      el_ip.textContent = j.ip;
+      // update brief
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      brief.textContent = `${hh}:${mm} • ${j.ip}`;
+      // geo
+      try {
+        const g = await fetch('https://ipapi.co/json/');
+        const gj = await g.json();
+        const loc = [gj.city, gj.region, gj.country_name].filter(Boolean).join(', ');
+        el_loc.textContent = loc || '—';
+      } catch (e) {
+        el_loc.textContent = '—';
+      }
+      setStatus(true);
+    } catch (e) {
+      el_ip.textContent = 'n/a';
+      el_loc.textContent = '—';
+      brief.textContent = `--:-- • IP`;
+      setStatus(false);
+    }
+  }
+  fetchIPandGeo();
+  setInterval(fetchIPandGeo, 60_000);
+
+  function setStatus(ok) {
+    if (ok) {
+      statusDot.style.background = 'linear-gradient(180deg, var(--island-accent), var(--island-accent-2))';
+      statusDot.style.boxShadow = '0 6px 18px rgba(162,89,255,0.28)';
+    } else {
+      statusDot.style.background = '#666';
+      statusDot.style.boxShadow = 'none';
+    }
+  }
+
+  // --- island open/close ---
+  let openState = false;
+  function openIsland() {
+    openState = true;
+    pill.setAttribute('aria-expanded','true');
+    panel.classList.add('show');
+    panel.setAttribute('aria-hidden','false');
+    pill.style.width = '280px';
+  }
+  function closeIsland() {
+    openState = false;
+    pill.setAttribute('aria-expanded','false');
+    panel.classList.remove('show');
+    panel.setAttribute('aria-hidden','true');
+    pill.style.width = '';
+  }
+  pill.addEventListener('click', () => openState ? closeIsland() : openIsland());
+  pill.addEventListener('keydown', e => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); openState ? closeIsland() : openIsland(); }});
+  closeBtn.addEventListener('click', closeIsland);
+  refreshBtn.addEventListener('click', () => { fetchIPandGeo(); updateClock(); });
+
+  // --- click outside to close ---
+  document.addEventListener('click', (e) => {
+    if (!panel.contains(e.target) && !pill.contains(e.target) && openState) closeIsland();
+  });
+
+  // --- copy info ---
+  copyBtn.addEventListener('click', async () => {
+    const payload = {
+      time: el_time.textContent,
+      ip: el_ip.textContent,
+      loc: el_loc.textContent,
+      browser: el_browser.textContent,
+      os: el_os.textContent,
+      res: el_res.textContent,
+      tz: el_tz.textContent,
+      lang: el_lang.textContent,
+      network: el_net.textContent,
+      battery: el_batt.textContent,
+      uptime: formatUptime()
+    };
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+      copyBtn.textContent = 'Copied ✓';
+      setTimeout(()=> copyBtn.textContent = 'Copy', 1400);
+    } catch (e) {
+      copyBtn.textContent = 'Failed';
+      setTimeout(()=> copyBtn.textContent = 'Copy', 1400);
+    }
+  });
+
+  // --- notification logic (ungu neon) ---
+  let notifTimer = null;
+  function showIslandNotification(text = 'Notifikasi') {
+    notif.textContent = text;
+    notif.classList.add('show');
+    notif.setAttribute('aria-hidden','false');
+    // little pulse on pill
+    pill.style.transform = 'translateY(-3px) scale(1.01)';
+    clearTimeout(notifTimer);
+    notifTimer = setTimeout(() => hideIslandNotification(), 3800);
+  }
+  function hideIslandNotification() {
+    notif.classList.remove('show');
+    notif.setAttribute('aria-hidden','true');
+    pill.style.transform = '';
+  }
+
+  // small helper: format uptime for copy
+  function formatUptime() {
+    const s = Math.floor((Date.now() - openedAt)/1000);
+    const h = Math.floor(s/3600); const m = Math.floor((s%3600)/60); const sec = s%60;
+    if (h>0) return `${h}h ${m}m`;
+    if (m>0) return `${m}m ${sec}s`;
+    return `${sec}s`;
+  }
+
+  // expose notification to global scope so other scripts can call it
+  window.showIslandNotification = showIslandNotification;
+
+  // demo: tiny initial welcome notification (one-time, after 800ms)
+  setTimeout(()=> showIslandNotification('Welcome back ✨'), 800);
+
+  // expose hide too
+  window.hideIslandNotification = hideIslandNotification;
+
+  // optional: if you want to show notif when AI responds, call showIslandNotification('AI responded')
+</script>
+<!-- ===== End Dynamic Island + Notification ===== -->
+
   <!-- Background Video -->
   <video class="bg-video" autoplay muted loop playsinline>
     <source src="https://files.catbox.moe/5ngux4.mp4" type="video/mp4">
