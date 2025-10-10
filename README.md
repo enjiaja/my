@@ -46,7 +46,7 @@ Tampilan terbaik kalau dibuka di browser desktop atau mobile modern (Chrome, Edg
 Nama gw Enang atau dalam dunia virtual suka di panggil Enji. Gw itu masih sekolah SMK sekaligus santri di pesantren Jabal Toriq (kali aja mau mampir hehe), sebenarnya ketertarikan gw dalam dunia coding itu ya tertarik banget tapi skill gw masih di bawah rata rata. Dan yap intinya jangan nyerah apapun yang terjadi okeee.
 Kalau pengen ngobrol, collab, atau kasih masukan:
 
-💬 WhatsApp: wa.me/6285143286752
+💬 WhatsApp: wa.me/6283199503146
 
 🐙 GitHub: github.com/enjiaja
 
